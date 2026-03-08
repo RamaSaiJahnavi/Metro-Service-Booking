@@ -20,6 +20,15 @@ public class MonitoringController {
         this.graphService = graphService;
     }
 
+    @GetMapping({"", "/"})
+    public ResponseEntity<Map<String, Object>> apiRoot() {
+        return ResponseEntity.ok(Map.of(
+                "service", "metro-booking-system",
+                "status", "UP",
+                "health", "/api/health"
+        ));
+    }
+
     @GetMapping("/health")
     public ResponseEntity<Map<String, Object>> health() {
         long uptimeMs = ManagementFactory.getRuntimeMXBean().getUptime();
