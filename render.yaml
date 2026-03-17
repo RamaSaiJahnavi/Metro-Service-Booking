@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: metro-booking-backend
+    env: docker
+    plan: free
+    rootDir: metro-booking-system
+    dockerfilePath: Dockerfile
+    healthCheckPath: /api/health
+
+  - type: static
+    name: metro-booking-frontend
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://REPLACE_WITH_BACKEND_URL.onrender.com
