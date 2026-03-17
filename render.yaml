@@ -7,8 +7,9 @@ services:
     dockerfilePath: Dockerfile
     healthCheckPath: /api/health
 
-  - type: static
+  - type: web
     name: metro-booking-frontend
+    runtime: static
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
